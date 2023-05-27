@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_hotel_root"
+        name="Hotel"
+        sequence="-1"
+        web_icon="sw_hotel,static/description/icon.png"
+    />
+    <!-- Reservation -->
+    <menuitem
+        id="menu_reservation_master"
+        name="Reservations"
+        parent="menu_hotel_root"
+        sequence="0"
+    />
+    <menuitem
+        id="menu_reservation"
+        name="Reservations Details"
+        parent="menu_reservation_master"
+        action="action_hotel_reservation"
+        sequence="0"
+    />
+    <menuitem
+        id="menu_reservation_canceled"
+        name="Canceled Reservations Details"
+        parent="menu_reservation_master"
+        action="action_hotel_reservation_canceled"
+        sequence="1"
+    />
+    <!-- Rooms -->
+    <menuitem
+        id="menu_room_master"
+        name="Rooms"
+        parent="menu_hotel_root"
+        sequence="1"
+    />
+    <menuitem
+        id="menu_room"
+        name="Rooms Details"
+        parent="menu_room_master"
+        action="action_hotel_room"
+        sequence="0"
+    />
+    <!-- Customers -->
+    <menuitem
+        id="menu_customer_master"
+        name="Customers"
+        parent="menu_hotel_root"
+        sequence="2"
+    />
+    <menuitem
+        id="menu_customer"
+        name="Customers Details"
+        parent="menu_customer_master"
+        action="action_hotel_customer"
+        sequence="0"
+    />
+    <!-- Transaction -->
+    <menuitem
+        id="menu_transaction_master"
+        name="Transactions"
+        parent="menu_hotel_root"
+        sequence="3"
+    />
+    <menuitem
+        id="menu_transaction"
+        name="Transactions Details"
+        parent="menu_transaction_master"
+        action="action_hotel_transaction"
+        sequence="0"
+    />
+    <menuitem
+        id="menu_transaction_canceled"
+        name="Canceled Transactions Details"
+        parent="menu_transaction_master"
+        action="action_hotel_transaction_canceled"
+        sequence="1"
+    />
+    <!-- Tags -->
+    <menuitem
+        id="menu_tags_master"
+        name="Tags"
+        parent="menu_hotel_root"
+        sequence="4"
+    />
+    <menuitem
+        id="menu_room_class"
+        name="Rooms Classes"
+        parent="menu_tags_master"
+        action="action_hotel_room_class"
+        sequence="0"
+    />
+    <menuitem
+        id="menu_room_type"
+        name="Rooms Types"
+        parent="menu_tags_master"
+        action="action_hotel_room_type"
+        sequence="0"
+    />
+
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hotel_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">hotel.customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first customer!
+            </p>
+        </field>
+    </record>
+
+    <record id="search_hotel_customer" model="ir.ui.view">
+        <field name="name">hotel.customer.search</field>
+        <field name="model">hotel.customer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="first_name" string="First/Last name" filter_domain="['|', ('first_name', 'ilike', self),('last_name', 'ilike', self)]"/>
+                <field name="last_name"/>
+                <field name="date_of_birth"/>
+                <separator/>
+                <filter name="Adults" domain="[('minor', '=', True)]"/>
+                <filter name="Minors" domain="[('minor', '=', False)]"/>
+                <separator/>
+                <filter name="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="tree_hotel_customer" model="ir.ui.view">
+        <field name="name">hotel.customer.tree</field>
+        <field name="model">hotel.customer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="gender"/>
+                <field name="date_of_birth" optional="hide"/>
+                <field name="age"/>
+                <field name="minor" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="form_hotel_customer" model="ir.ui.view">
+        <field name="name">hotel.customer.form</field>
+        <field name="model">hotel.customer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="minor"/>
+                        </group>
+                    </group>
+                    <field name="active" invisible="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
