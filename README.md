@@ -1,3 +1,3 @@
-# Odoo Hotel Management <sub><i>Odoo 15</i></sub>
+# Odoo-Hotel-Management <sub><i>Odoo 15</i></sub>
 
 
