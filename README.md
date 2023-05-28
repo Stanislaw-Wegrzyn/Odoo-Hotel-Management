@@ -19,7 +19,7 @@ Addon głównie opiera się na modelu <i>Reservation</i>. Pozwala on na tworzeni
 
   <li>Po utworzeniu transakcji, transakcja automatycznie jest wykrywana i przypisywana do odpowiedniej rezerwacji zminiając jej właściwość <i>payment status</i>, która jest w pełni zależna od właściwości <i>status</i> przypisanej transakcji.</li><br>
 
-  <li>Podczas przypisywania pokoi do reserwacji można użyć przycisku automatycznego przypisywania, który przypisze pokoje wybranej klasy, idealnie spełniające wymagania jeżeli jest to możliwe, jeżeli nie da się doastać takiej kombinacji, użytkownik zostanie poinformowany o tym alertem.</li><br>
+  <li>Podczas przypisywania pokoi do reserwacji można użyć przycisku automatycznego przypisywania, który przypisze pokoje wybranej klasy, idealnie spełniające wymagania jeżeli jest to możliwe, jeżeli nie da się dostać takiej kombinacji, użytkownik zostanie poinformowany o tym alertem.</li><br>
 
   <li>Rezerwacje i transakcje są w pełni zależne od siebie, usunięcie transakcji spowoduje zmianę właściwości <i>payment status</i> odpowiedniej rezerwacji, a anulowanie rezerwacji oznaczy przypisaną do niej transakcje jako anulowaną.</li><br>
 
