@@ -20,13 +20,6 @@
         action="action_hotel_reservation"
         sequence="0"
     />
-    <menuitem
-        id="menu_reservation_canceled"
-        name="Canceled Reservations Details"
-        parent="menu_reservation_master"
-        action="action_hotel_reservation_canceled"
-        sequence="1"
-    />
     <!-- Rooms -->
     <menuitem
         id="menu_room_master"
@@ -68,13 +61,6 @@
         parent="menu_transaction_master"
         action="action_hotel_transaction"
         sequence="0"
-    />
-    <menuitem
-        id="menu_transaction_canceled"
-        name="Canceled Transactions Details"
-        parent="menu_transaction_master"
-        action="action_hotel_transaction_canceled"
-        sequence="1"
     />
     <!-- Tags -->
     <menuitem

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rooms classes-->
+    <record id="classic_room_class" model="hotel.room_class">
+        <field name="name">Classic</field>
+        <field name="price">50</field>
+    </record>
+    <record id="premium_room_class" model="hotel.room_class">
+        <field name="name">Premium</field>
+        <field name="price">100</field>
+    </record>
+    <record id="vip_room_class" model="hotel.room_class">
+        <field name="name">VIP</field>
+        <field name="price">200</field>
+    </record>
+
+    <!-- Rooms types-->
+    <record id="single_room_type" model="hotel.room_type">
+        <field name="name">Single</field>
+        <field name="extra_price_percent">0</field>
+    </record>
+    <record id="double_room_type" model="hotel.room_type">
+        <field name="name">Double</field>
+        <field name="extra_price_percent">20</field>
+    </record>
+    <record id="family_room_type" model="hotel.room_type">
+        <field name="name">Family</field>
+        <field name="extra_price_percent">50</field>
+    </record>
+
+    <!-- Rooms -->
+    <record id="0_0_room" model="hotel.room">
+        <field name="floor">0</field>
+        <field name="number">0</field>
+        <field name="customers_capacity">1</field>
+        <field name="room_class_id" ref="classic_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="0_1_room" model="hotel.room">
+        <field name="floor">0</field>
+        <field name="number">1</field>
+        <field name="customers_capacity">2</field>
+        <field name="room_class_id" ref="classic_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="0_2_room" model="hotel.room">
+        <field name="floor">0</field>
+        <field name="number">2</field>
+        <field name="customers_capacity">4</field>
+        <field name="room_class_id" ref="classic_room_class" />
+        <field name="room_type_id" ref="family_room_type" />
+        <field name="status">available</field>
+    </record>
+
+    <record id="1_0_room" model="hotel.room">
+        <field name="floor">1</field>
+        <field name="number">0</field>
+        <field name="customers_capacity">1</field>
+        <field name="room_class_id" ref="premium_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="1_1_room" model="hotel.room">
+        <field name="floor">1</field>
+        <field name="number">1</field>
+        <field name="customers_capacity">2</field>
+        <field name="room_class_id" ref="premium_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="1_2_room" model="hotel.room">
+        <field name="floor">1</field>
+        <field name="number">2</field>
+        <field name="customers_capacity">4</field>
+        <field name="room_class_id" ref="premium_room_class" />
+        <field name="room_type_id" ref="family_room_type" />
+        <field name="status">available</field>
+    </record>
+
+    <record id="2_0_room" model="hotel.room">
+        <field name="floor">2</field>
+        <field name="number">0</field>
+        <field name="customers_capacity">1</field>
+        <field name="room_class_id" ref="vip_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="2_1_room" model="hotel.room">
+        <field name="floor">2</field>
+        <field name="number">1</field>
+        <field name="customers_capacity">2</field>
+        <field name="room_class_id" ref="vip_room_class" />
+        <field name="room_type_id" ref="single_room_type" />
+        <field name="status">available</field>
+    </record>
+    <record id="2_2_room" model="hotel.room">
+        <field name="floor">2</field>
+        <field name="number">2</field>
+        <field name="customers_capacity">4</field>
+        <field name="room_class_id" ref="vip_room_class" />
+        <field name="room_type_id" ref="family_room_type"></field>
+        <field name="status">available</field>
+    </record>
+
+    <!-- Customers-->
+    <record id="base.res_partner_address_1" model="res.partner">
+        <field name="date_of_birth">2000-01-01</field>
+    </record>
+    <record id="base.res_partner_address_2" model="res.partner">
+        <field name="date_of_birth">2020-01-01</field>
+    </record>
+    <record id="base.res_partner_address_3" model="res.partner">
+        <field name="date_of_birth">2005-01-01</field>
+    </record>
+
+    <record id="base.res_partner_address_4" model="res.partner">
+        <field name="date_of_birth">2000-01-01</field>
+    </record>
+    <record id="base.res_partner_address_5" model="res.partner">
+        <field name="date_of_birth">2020-01-01</field>
+    </record>
+    <record id="base.res_partner_address_7" model="res.partner">
+        <field name="date_of_birth">2005-01-01</field>
+    </record>
+
+    <!-- Reservations -->
+    <!-- <record id="js_0_reservation" model="hotel.reservation">
+        <field name="application_datetime" eval="DateTime.today() " />
+        <field name="reservation_date_start" eval="(DateTime.today()).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_date_end"
+            eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_host_id" ref="john_smith_customer" />
+        <field name="persons_ids"
+            eval="[(6,0,[ref('john_smith_customer'),ref('michael_smith_customer'),ref('amber_smith_customer')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('0_1_room'),ref('1_1_room')])]" />
+        <field name="status">in_proces</field>
+    </record>
+    <record id="js_1_reservation" model="hotel.reservation">
+        <field name="application_datetime"
+            eval="(DateTime.today() + relativedelta(days=30)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_date_start"
+            eval="(DateTime.today() + relativedelta(days=35)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_date_end"
+            eval="(DateTime.today() + relativedelta(days=40)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_host_id" ref="john_smith_customer" />
+        <field name="persons_ids"
+            eval="[(6,0,[ref('john_smith_customer'),ref('michael_smith_customer'),ref('amber_smith_customer')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('0_2_room')])]" />
+        <field name="status">draft</field>
+    </record>
+    <record id="jb_0_reservation" model="hotel.reservation">
+        <field name="application_datetime" eval="DateTime.today() " />
+        <field name="reservation_date_start"
+            eval="(DateTime.today() + relativedelta(days=5)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_date_end"
+            eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')" />
+        <field name="reservation_host_id" ref="john_becker_customer" />
+        <field name="persons_ids"
+            eval="[(6,0,[ref('john_becker_customer'),ref('michael_becker_customer'),ref('amber_becker_customer')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('0_0_room'),ref('1_0_room')])]" />
+        <field name="status">ready</field>
+    </record> -->
+
+    <!-- Transactions -->
+    <!-- <record id="js_0_transaction" model="hotel.transaction">
+        <field name="application_datetime" eval="(DateTime.today() + relativedelta(days=-10))" />
+        <field name="reservation_id" ref="js_0_reservation" />
+        <field name="proceeded_datetime" eval="DateTime.today()" />
+        <field name="status">paid</field>
+    </record>
+    <record id="js_1_transaction" model="hotel.transaction">
+        <field name="application_datetime" eval="DateTime.today()" />
+        <field name="reservation_id" ref="js_1_reservation" />
+        <field name="proceeded_datetime" eval="DateTime.today()" />
+        <field name="status">canceled</field>
+    </record> -->
+</odoo> 

@@ -1,5 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access.hotel.customer,access_hotel_customer,sw_hotel.model_hotel_customer,base.group_user,1,1,1,1
 access.hotel.room,access_hotel_room,sw_hotel.model_hotel_room,base.group_user,1,1,1,1
 access.hotel.reservation,access_hotel_reservation,sw_hotel.model_hotel_reservation,base.group_user,1,1,1,1
 access.hotel.transaction,access_hotel_transaction,sw_hotel.model_hotel_transaction,base.group_user,1,1,1,1

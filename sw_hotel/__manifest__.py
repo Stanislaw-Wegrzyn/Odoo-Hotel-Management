@@ -4,7 +4,7 @@
     'category': 'Hotel',
     'summary': 'Hotel Managment',
     'description': """ Hotel Managment System """,
-    'depends': ['mail'],
+    'depends': ['mail', "base"],
     'data': [
         'security/ir.model.access.csv',
         './views/room_class_view.xml',
@@ -15,10 +15,12 @@
         './views/transaction_view.xml',
         './views/menu.xml',
     ],
-    'demo': [],
+    'demo': ["./data/hotel_demo.xml"],
+    'post_init_hook': 'ranomise_date_of_birth',
+
     'installable': True,
     'application': True,
-    'auto_install': False,
+
     'sequence': -100,
 }
 
