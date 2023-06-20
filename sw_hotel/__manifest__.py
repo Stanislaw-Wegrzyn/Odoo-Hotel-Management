@@ -15,7 +15,7 @@
         './views/transaction_view.xml',
         './views/menu.xml',
     ],
-    'demo': ["./data/hotel_demo.xml"],
+    'demo': ["./data/sw_hotel_demo.xml"],
     'post_init_hook': 'ranomise_date_of_birth',
 
     'installable': True,

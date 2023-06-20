@@ -42,7 +42,7 @@
         <field name="number">1</field>
         <field name="customers_capacity">2</field>
         <field name="room_class_id" ref="classic_room_class" />
-        <field name="room_type_id" ref="single_room_type" />
+        <field name="room_type_id" ref="double_room_type" />
         <field name="status">available</field>
     </record>
     <record id="0_2_room" model="hotel.room">
@@ -67,7 +67,7 @@
         <field name="number">1</field>
         <field name="customers_capacity">2</field>
         <field name="room_class_id" ref="premium_room_class" />
-        <field name="room_type_id" ref="single_room_type" />
+        <field name="room_type_id" ref="double_room_type" />
         <field name="status">available</field>
     </record>
     <record id="1_2_room" model="hotel.room">
@@ -92,7 +92,7 @@
         <field name="number">1</field>
         <field name="customers_capacity">2</field>
         <field name="room_class_id" ref="vip_room_class" />
-        <field name="room_type_id" ref="single_room_type" />
+        <field name="room_type_id" ref="double_room_type" />
         <field name="status">available</field>
     </record>
     <record id="2_2_room" model="hotel.room">
@@ -125,55 +125,61 @@
         <field name="date_of_birth">2005-01-01</field>
     </record>
 
+    <!-- ? FIXME recordy się nieaktualizują-->
+    <!-- <function model="res.partner" name="write"> 
+        <value eval="[]" />
+        <value eval="{'date_of_birth': '2005-01-01'}" />
+    </function> -->
+
     <!-- Reservations -->
-    <!-- <record id="js_0_reservation" model="hotel.reservation">
+    <record id="p1_0_reservation" model="hotel.reservation">
         <field name="application_datetime" eval="DateTime.today() " />
         <field name="reservation_date_start" eval="(DateTime.today()).strftime('%Y-%m-%d %H:%M')" />
         <field name="reservation_date_end"
             eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')" />
-        <field name="reservation_host_id" ref="john_smith_customer" />
+        <field name="reservation_host_id" ref="base.res_partner_address_1" />
         <field name="persons_ids"
-            eval="[(6,0,[ref('john_smith_customer'),ref('michael_smith_customer'),ref('amber_smith_customer')])]" />
-        <field name="rooms_ids" eval="[(6,0,[ref('0_1_room'),ref('1_1_room')])]" />
+            eval="[(6,0,[ref('base.res_partner_address_1'),ref('base.res_partner_address_2'),ref('base.res_partner_address_3')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('0_2_room')])]" />
         <field name="status">in_proces</field>
     </record>
-    <record id="js_1_reservation" model="hotel.reservation">
+    <record id="p1_1_reservation" model="hotel.reservation">
         <field name="application_datetime"
             eval="(DateTime.today() + relativedelta(days=30)).strftime('%Y-%m-%d %H:%M')" />
         <field name="reservation_date_start"
             eval="(DateTime.today() + relativedelta(days=35)).strftime('%Y-%m-%d %H:%M')" />
         <field name="reservation_date_end"
             eval="(DateTime.today() + relativedelta(days=40)).strftime('%Y-%m-%d %H:%M')" />
-        <field name="reservation_host_id" ref="john_smith_customer" />
+        <field name="reservation_host_id" ref="base.res_partner_address_1" />
         <field name="persons_ids"
-            eval="[(6,0,[ref('john_smith_customer'),ref('michael_smith_customer'),ref('amber_smith_customer')])]" />
-        <field name="rooms_ids" eval="[(6,0,[ref('0_2_room')])]" />
+            eval="[(6,0,[ref('base.res_partner_address_1')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('2_0_room')])]" />
         <field name="status">draft</field>
     </record>
-    <record id="jb_0_reservation" model="hotel.reservation">
+    <record id="p4_0_reservation" model="hotel.reservation">
         <field name="application_datetime" eval="DateTime.today() " />
         <field name="reservation_date_start"
             eval="(DateTime.today() + relativedelta(days=5)).strftime('%Y-%m-%d %H:%M')" />
         <field name="reservation_date_end"
             eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')" />
-        <field name="reservation_host_id" ref="john_becker_customer" />
+        <field name="reservation_host_id" ref="base.res_partner_address_4" />
         <field name="persons_ids"
-            eval="[(6,0,[ref('john_becker_customer'),ref('michael_becker_customer'),ref('amber_becker_customer')])]" />
-        <field name="rooms_ids" eval="[(6,0,[ref('0_0_room'),ref('1_0_room')])]" />
+            eval="[(6,0,[ref('base.res_partner_address_4'),ref('base.res_partner_address_5'),ref('base.res_partner_address_7')])]" />
+        <field name="rooms_ids" eval="[(6,0,[ref('1_0_room'),ref('1_1_room')])]" />
         <field name="status">ready</field>
-    </record> -->
+    </record>
 
     <!-- Transactions -->
-    <!-- <record id="js_0_transaction" model="hotel.transaction">
+    <record id="js_0_transaction" model="hotel.transaction">
         <field name="application_datetime" eval="(DateTime.today() + relativedelta(days=-10))" />
-        <field name="reservation_id" ref="js_0_reservation" />
+        <field name="reservation_id" ref="p1_0_reservation" />
         <field name="proceeded_datetime" eval="DateTime.today()" />
         <field name="status">paid</field>
     </record>
     <record id="js_1_transaction" model="hotel.transaction">
         <field name="application_datetime" eval="DateTime.today()" />
-        <field name="reservation_id" ref="js_1_reservation" />
+        <field name="reservation_id" ref="p1_1_reservation" />
         <field name="proceeded_datetime" eval="DateTime.today()" />
         <field name="status">canceled</field>
-    </record> -->
+    </record>
 </odoo> 

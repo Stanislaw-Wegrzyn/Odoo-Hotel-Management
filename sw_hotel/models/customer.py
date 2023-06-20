@@ -9,14 +9,18 @@ class HotelCustomer(models.Model):
     # _description = "hotel visitor/customer"
     # _rec_name = 'full_name'
 
-    date_of_birth = fields.Date(required=True)
+    date_of_birth = fields.Date()
     age = fields.Integer(string="Age", compute="_compute_age", store=True)
     is_minor = fields.Boolean(compute="_compute_age", store=True)
 
-    actual_transaction_id = fields.Many2one(comodel_name="hotel.reservation", readonly=True, store=True)  # TODO compute this field
+    actual_transaction_id = fields.Many2one(comodel_name="hotel.reservation", readonly=True, store=True)
     reservations_ids = fields.Many2many(comodel_name="hotel.reservation", readonly=True)
     rooms_his_ids = fields.Many2many(comodel_name="hotel.room", readonly=True) 
     transactions_ids = fields.Many2many(comodel_name="hotel.transaction", readonly=True)
+    
+    reservations_count = fields.Integer(compute="_compute_reservations_count")
+    rooms_count = fields.Integer(compute="_compute_rooms_count")
+    transactions_count = fields.Integer(compute="_compute_transactions_count")
 
     @api.depends('date_of_birth')
     def _compute_age(self):
@@ -29,13 +33,42 @@ class HotelCustomer(models.Model):
                 rec.age = False
                 rec.is_minor = False
 
-    def ranomise_date_of_birts(env):
-        print(f"[?]{env['base']}                                       [?]")
-        for e in env['base']:
-            print(e)
-        # for partner in env['base']:
-        #     print("[??]:", partner.date_of_birth)
-        #     print("[???]:", not partner.date_of_birth)
-        #     if not partner.date_of_birth:
-        #         random_dob = date.today() - timedelta(days=random.randint(365*10, 365*60))  # Random date of birth within a range
-        #         partner.write({'date_of_birth': random_dob})
+    def _compute_reservations_count(self):
+        for rec in self:
+            rec.reservations_count = len(rec.env['hotel.reservation'].search([('persons_ids', 'in', rec.ids)]))
+    
+    def _compute_rooms_count(self):
+        for rec in self:
+            rec.rooms_count = sum(len(reservation.rooms_ids) for reservation in rec.env['hotel.reservation'].search([('persons_ids', 'in', rec.ids)]))
+
+    def _compute_transactions_count(self):
+        for rec in self:
+            rec.transactions_count = sum(int(reservation.payment_status != 'no_transaction') for reservation in rec.env['hotel.reservation'].search([('persons_ids', 'in', rec.ids)]))
+
+    def action_view_customers_reservations(self):
+        action = self.env.ref('sw_hotel.action_hotel_reservation').read()[0]
+        action['domain'] = [('persons_ids', 'in', self.ids)]
+        action['context'] = {'search_default_by_status': True}
+        return action
+
+    def action_view_customers_rooms(self):
+        action = self.env.ref('sw_hotel.action_hotel_room').read()[0]
+
+        customer_rooms_ids = []
+        for reservation in self.env['hotel.reservation'].search([('persons_ids', 'in', self.ids)]):
+            customer_rooms_ids += reservation.rooms_ids.ids
+
+        action['domain'] = [('id', 'in', customer_rooms_ids)]
+
+        return action
+    
+    def action_view_customers_transactions(self):
+        action = self.env.ref('sw_hotel.action_hotel_transaction').read()[0]
+
+        action['domain'] = [('id', 'in', [reservation.transaction_id.id for reservation in self.env['hotel.reservation'].search([('persons_ids', 'in', self.ids)])])]
+        action['context'] = {'search_default_by_status': True}
+
+        return action
+
+    def scheduled_change_age(self):
+        self._compute_age()

@@ -6,15 +6,17 @@ class HotelTransaction(models.Model):
     _name = "hotel.transaction"
     _description = "hotel transaction/payment"
 
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+
     name = fields.Char(compute="_compute_name")
 
-    identifier = fields.Char(string="ID")
-    application_datetime = fields.Datetime(string="Application date and time", required=True)
-    reservation_id = fields.Many2one(comodel_name='hotel.reservation', string="Reservation paying of")
-    price = fields.Float(string="Price")
-    proceeded_datetime = fields.Datetime(string="Proceeded on", required=True)
+    identifier = fields.Char(string="ID", tracking=True)
+    application_datetime = fields.Datetime(required=True, tracking=True)
+    reservation_id = fields.Many2one(comodel_name='hotel.reservation', tracking=True)
+    price = fields.Float(tracking=True)
+    proceeded_datetime = fields.Datetime(string="Proceeded on", required=True, tracking=True)
 
-    status = fields.Selection([('draft', 'Draft'), ('in_proces', 'In proces'), ('paid', 'Proceed'), ('canceled', 'Canceled')], string="Status", default='draft', required=True)
+    status = fields.Selection([('draft', 'Draft'), ('in_proces', 'In proces'), ('paid', 'Proceed'), ('canceled', 'Canceled')], string="Status", default='draft', required=True, tracking=True)
 
     active = fields.Boolean(default=True)
 
@@ -34,13 +36,12 @@ class HotelTransaction(models.Model):
 
     @api.model
     def create(self, vals):
-        # vals.update({''})
         record = super(HotelTransaction, self).create(vals)
         referred_reservation = record.env['hotel.reservation'].search([('id', '=', record.reservation_id.id)])
         
         record.identifier = self.create_transaction_identifier()
         referred_reservation.payment_status = record.status
-        referred_reservation.assigned_transaction = [(6, 0, [record.id])]
+        referred_reservation.transaction_id = [(6, 0, [record.id])]
 
         record.price = referred_reservation.reservation_price
 
@@ -51,6 +52,10 @@ class HotelTransaction(models.Model):
         for rec in self:
             referred_reservation = rec.env['hotel.reservation'].search([('id', '=', rec.reservation_id.id)])
             referred_reservation.payment_status = rec.status
+
+    def write(self, values):
+        super().write(values)
+        self.onchange_status()
 
     def create_transaction_identifier(self):
         identifier = "ID"

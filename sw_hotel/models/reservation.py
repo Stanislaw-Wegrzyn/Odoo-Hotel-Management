@@ -1,3 +1,4 @@
+from datetime import datetime, date
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
@@ -6,71 +7,91 @@ class HotelReservation(models.Model):
     _name = "hotel.reservation"
     _description = "hotel reservation"
 
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+
     name = fields.Char(string="Name", compute='_compute_name')
 
-    application_datetime = fields.Datetime(string='Application date', default=fields.Datetime.now(), required=True)
-    reservation_date_start = fields.Date(string='Reservation start date', required=True)
-    reservation_date_end = fields.Date(string='Reservation end date', required=True)
+    application_datetime = fields.Datetime(default=fields.Datetime.now(), required=True)
+    reservation_date_start = fields.Date(required=True, tracking=True)
+    reservation_date_end = fields.Date(required=True, tracking=True)
+
+    calendar_date_start = fields.Datetime(default=lambda self: fields.Datetime.now())
 
     reservation_price = fields.Float(string="Price", compute="_compute_price")
 
-    persons_number = fields.Integer(string='Number of persons_ids', store=True, compute="_compute_persons_number")
-    reservation_host_id = fields.Many2one(comodel_name='res.partner', string="Customer host of reservation", required=True)
-    reservation_class_id = fields.Many2one(comodel_name='hotel.room_class', string="Reservation's class",
-                                           compute="_compute_reservation_class")
-    persons_ids = fields.Many2many(comodel_name='res.partner', string="Customers in reservation", required=True)
+    persons_number = fields.Integer(store=True, compute="_compute_persons_number")
+    reservation_host_id = fields.Many2one(comodel_name='res.partner', domain="[('date_of_birth', '!=', None)]", required=True, tracking=True)
+    persons_ids = fields.Many2many(comodel_name='res.partner', domain="[('date_of_birth', '!=', None)]", string="Customers in reservation", required=True)
     children_number = fields.Integer(string="Amount of children", compute="_compute_children_number", store=True)
-    children_included = fields.Boolean(string="Children included?", compute='_compute_children_included', store=True)
+    children_included = fields.Boolean(compute='_compute_children_included', store=True)
+    reservation_class_id = fields.Many2one(comodel_name='hotel.room_class', string="Reservation's class", compute="_compute_reservation_class")
 
-    rooms_amount = fields.Integer(string='Amount of rooms', compute="_compute_rooms_amount")
+    rooms_amount = fields.Integer(compute="_compute_rooms_amount")
     rooms_ids = fields.Many2many(comodel_name='hotel.room', string="Rooms in reservation",
-                             domain="[('status', '=', 'available')]", required=True)
+                             domain="[('status', '=', 'available')]", required=True, tracking=True)
 
-    preferred_rooms_class = fields.Many2one(comodel_name='hotel.room_class', string="Preferred rooms class",
-                                            required=False)
+    preferred_rooms_class = fields.Many2one(comodel_name='hotel.room_class', required=False)
 
-    assigned_transaction = fields.Many2many(comodel_name="hotel.transaction", limit=1, readonly=True, store=True)
-    referred_transaction = fields.Many2one(comodel_name="hotel.transaction", compute="_compute_referred_transaction", sore=True)
+    transaction_id = fields.Many2many(comodel_name="hotel.transaction", limit=1, readonly=True, store=True)
+    referred_transaction = fields.Many2one(comodel_name="hotel.transaction", compute="_compute_referred_transaction", sore=True, tracking=True)
     payment_status = fields.Selection(
         [('no_transaction', 'No transaction'), ('draft', 'Draft'), ('in_proces', 'In proces'), ('paid', 'Paid'), ('canceled', 'Canceled')],
-        string="Payment status", compute="_compute_payment_status", store=True)
+        string="Payment status", compute="_compute_payment_status", store=True, tracking=True)
 
-    special_requirements = fields.Html(string="Special requirements for the reservation")
+    special_requirements = fields.Html()
 
     status = fields.Selection([
         ('draft', 'Draft'),
         ('ready', 'Ready'),
         ('in_proces', 'In proces'),
         ('ended', 'Ended'),
-        ('suspended', 'Suspended'),
         ('canceled', 'Canceled')
-    ], string="Status", required=True, default='draft')
+    ], required=True, default='draft', compute="_compute_status", tracking=True, store=True)
 
     active = fields.Boolean(default=True)
+
+    customers_count = fields.Integer(compute="_compute_customers_count")
+    rooms_count = fields.Integer(compute="_compute_rooms_count")
 
     def _compute_name(self):
         for rec in self:
             if rec.reservation_date_start and rec.reservation_date_end and rec.reservation_host_id:
                 rec.name = rec.reservation_date_start.strftime("%d/%m/%y") + "-" + rec.reservation_date_end.strftime(
-                    "%d/%m/%y") + " " + rec.reservation_host_id.first_name + " " + rec.reservation_host_id.last_name
+                    "%d/%m/%y") + " " + rec.reservation_host_id.name
 
     @api.onchange('reservation_host_id')
     def onchange_reservation_host_id(self):
         for rec in self:
-            if rec.reservation_host_id:
-                persons_ids_list = list(rec.persons_ids.ids)
+            if rec.reservation_host_id not in rec.persons_ids and rec.reservation_host_id:
+                rec.persons_ids = [(4, rec.reservation_host_id.id, 0)]
 
-                persons_ids_list.append(rec.reservation_host_id.id)
+    @api.model
+    def create(self, vals):
+        if 'persons_ids' in vals.keys():
+            if vals['reservation_host_id'] not in vals['persons_ids']:
+                vals['persons_ids'].append(vals['reservation_host_id'])
+        else:
+            vals.update({'persons_ids': [(4, vals['reservation_host_id'])]})
 
-                rec.persons_ids = persons_ids_list
-                rec.reservation_host_id = rec.reservation_host_id
+        if 'rooms_ids' in vals.keys():
+            for room in self.rooms_ids:
+                room.status = 'occupied'
+
+        record = super(HotelReservation, self).create(vals)
+        return record
+    
+    def write(self, vals):
+        super().write(vals)
+        if 'rooms_ids' in vals.keys():
+            for room in self.rooms_ids:
+                room.status = 'occupied'
+
 
     @api.onchange('persons_ids')
     def onchange_persons(self):
         for rec in self:
-            deleted = list(set(rec._origin.persons_ids.ids) - set(rec.persons_ids.ids))
-            if rec.reservation_host_id.id in deleted:
-                rec.reservation_host_id = rec.persons_ids[0] if len(rec.persons_ids) else None
+            if rec.reservation_host_id.id not in rec.persons_ids.ids:
+                rec.reservation_host_id = None
 
     @api.depends('persons_ids')
     def _compute_persons_number(self):
@@ -82,7 +103,7 @@ class HotelReservation(models.Model):
     def _compute_children_number(self):
         for rec in self:
             if rec.persons_ids:
-                rec.children_number = len([x for x in rec.persons_ids if x.minor])
+                rec.children_number = len([x for x in rec.persons_ids if x.is_minor])
 
     @api.depends('children_number')
     def _compute_children_included(self):
@@ -92,19 +113,19 @@ class HotelReservation(models.Model):
             else:
                 rec.children_included = False
 
-    @api.depends('assigned_transaction')
+    @api.depends('transaction_id')
     def _compute_referred_transaction(self):
         for rec in self:
-            if len(list(rec.assigned_transaction)) > 0:
-                rec.referred_transaction = rec.assigned_transaction[0]
+            if len(list(rec.transaction_id)) > 0:
+                rec.referred_transaction = rec.transaction_id[0]
             else:
                 rec.referred_transaction = None
 
-    @api.depends('assigned_transaction')
+    @api.depends('transaction_id')
     def _compute_payment_status(self):
         for rec in self:
-            if len(list(rec.assigned_transaction)) > 0:
-                rec.payment_status = rec.assigned_transaction.status
+            if len(list(rec.transaction_id)) > 0:
+                rec.payment_status = rec.transaction_id.status
             else:
                 rec.payment_status = "no_transaction"
 
@@ -129,17 +150,6 @@ class HotelReservation(models.Model):
     def _compute_rooms_amount(self):
         for rec in self:
             rec.rooms_amount = len(list(rec.rooms_ids))
-
-    @api.onchange('rooms_ids')
-    def onchange_rooms(self):
-        for rec in self:
-            to_need_preparation = set(rec._origin.rooms_ids.ids) - set(rec.rooms_ids.ids)
-
-            for room in rec._origin.rooms_ids:
-                if room.id in to_need_preparation:
-                    room.status = 'need_preparation'
-            for room in rec.rooms_ids:
-                room.status = 'occupied'
 
     def auto_rooms(self):
         for rec in self:
@@ -205,9 +215,54 @@ class HotelReservation(models.Model):
         for rec in self:
             if rec.payment_status in ['in_process', 'paid']:
                 raise UserError("You can't cancel a reservation while the transaction is paid or in progress.")
-            rec.status = "canceled"
+            rec.status = 'canceled'
+
             for room in rec.rooms_ids:
                 room.status = "available"
             if rec.referred_transaction:
                 rec.referred_transaction.status = 'canceled'
 
+    def proceed_reservation(self):
+        for rec in self:
+            if rec.status in ['draft', 'canceled']:
+                rec.status = 'ready'
+                rec._compute_status()
+            else:
+                raise UserError("Reservation is already in process.")
+
+    def _compute_customers_count(self):
+        for rec in self:
+            rec.customers_count = len(rec.persons_ids.ids)
+
+    def _compute_rooms_count(self):
+        for rec in self:
+            rec.rooms_count = len(rec.rooms_ids.ids)
+
+    def action_view_reservation_customers(self):
+        action = self.env.ref('sw_hotel.action_hotel_customer').read()[0]
+        action['domain'] = [('id', 'in', self.persons_ids.ids)]
+        return action
+
+    def action_view_reservation_rooms(self):
+        action = self.env.ref('sw_hotel.action_hotel_room').read()[0]
+        action['domain'] = [('id', 'in', self.rooms_ids.ids)]
+        action['context'] = {'search_default_by_status': True}
+
+        return action
+    
+    @api.depends('reservation_date_start', 'reservation_date_end')
+    def _compute_status(self):
+        for rec in self:
+            if rec.reservation_date_start and rec.reservation_date_end:
+                if rec.status not in ('draft', 'canceled'):
+                    if rec.reservation_date_start > fields.Date.today():
+                        rec.status = "ready"
+                    elif rec.reservation_date_end < fields.Date.today():
+                        rec.status = "ended"
+                    elif rec.reservation_date_start <= fields.Date.today():
+                        rec.status = "in_proces"
+            
+
+    def scheduled_change_status(self):
+        self._compute_status()
+    

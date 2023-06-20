@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="action_hotel_room" model="ir.actions.act_window">
-        <field name="name">Rooms</field>
-        <field name="res_model">hotel.room</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create your first room!
-            </p>
-        </field>
-    </record>
-
     <record id="search_hotel_room" model="ir.ui.view">
         <field name="name">hotel.room.search</field>
         <field name="model">hotel.room</field>
         <field name="arch" type="xml">
             <search>
-                <field name="number"/>
-                <field name="floor"/>
-                <field name="customers_capacity"/>
-                <field name="room_class_id"/>
-                <field name="room_type_id"/>
-                <separator/>
-                <filter name="Only for adults" domain="[('for_children', '=', False)]"/>
-                <filter name="Including children" domain="[('for_children', '=', True)]"/>
-                <separator/>
-                <filter name="Archived" domain="[('active', '=', False)]"/>
+                <field name="number" />
+                <field name="floor" />
+                <field name="customers_capacity" />
+                <field name="room_class_id" />
+                <field name="room_type_id" />
+                <separator />
+                <filter name="Only for adults" domain="[('for_children', '=', False)]" />
+                <filter name="Including children" domain="[('for_children', '=', True)]" />
+                <separator />
+                <filter name="Archived" domain="[('active', '=', False)]" />
                 <group string="Group By">
-                    <filter string="By status" name="by_status" context="{'group_by':'status'}"/>
-                    <separator/>
-                    <filter string="By capacity" name="by_capacity" context="{'group_by':'customers_capacity'}"/>
-                    <filter string="By children capacity" name="by_children_capacity" context="{'group_by':'children_capacity'}"/>
-                    <separator/>
-                    <filter string="By class" name="by_class" context="{'group_by':'room_class_id'}"/>
-                    <filter string="By type" name="by_type" context="{'group_by':'room_type_id'}"/>
+                    <filter string="By status" name="by_status" context="{'group_by':'status'}" />
+                    <separator />
+                    <filter string="By capacity" name="by_capacity"
+                        context="{'group_by':'customers_capacity'}" />
+                    <filter string="By children capacity" name="by_children_capacity"
+                        context="{'group_by':'children_capacity'}" />
+                    <separator />
+                    <filter string="By class" name="by_class" context="{'group_by':'room_class_id'}" />
+                    <filter string="By type" name="by_type" context="{'group_by':'room_type_id'}" />
                 </group>
             </search>
         </field>
@@ -45,15 +35,15 @@
         <field name="model">hotel.room</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="number"/>
-                <field name="floor"/>
-                <field name="room_class_id"/>
-                <field name="room_type_id"/>
-                <field name="price"/>
-                <field name="customers_capacity"/>
-                <field name="children_capacity" optional="hide"/>
-                <field name="for_children" optional="hide"/>
-                <field name="status"/>
+                <field name="number" />
+                <field name="floor" />
+                <field name="room_class_id" />
+                <field name="room_type_id" />
+                <field name="price" />
+                <field name="customers_capacity" />
+                <field name="children_capacity" optional="hide" />
+                <field name="for_children" optional="hide" />
+                <field name="status" />
             </tree>
         </field>
     </record>
@@ -64,24 +54,37 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}" statusbar_visible="in_preparation,available,need_preparation"/>
+                    <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
+                        statusbar_visible="in_preparation,available,need_preparation" />
                 </header>
                 <sheet>
                     <group>
-                        <field name="number"/>
-                        <field name="floor"/>
-                        <field name="room_class_id"/>
-                        <field name="room_type_id"/>
-                        <field name="price"/>
+                        <field name="number" />
+                        <field name="floor" />
+                        <field name="room_class_id" />
+                        <field name="room_type_id" />
+                        <field name="price" />
                     </group>
                     <group>
-                        <field name="customers_capacity"/>
-                        <field name="children_capacity"/>
-                        <field name="for_children"/>
+                        <field name="customers_capacity" />
+                        <field name="children_capacity" />
+                        <field name="for_children" />
                     </group>
-                    <field name="active" invisible="1"/>
+                    <field name="active" invisible="1" />
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">hotel.room</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first room!
+            </p>
         </field>
     </record>
 </odoo>

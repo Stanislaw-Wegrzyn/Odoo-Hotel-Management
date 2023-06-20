@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="action_hotel_customer" model="ir.actions.act_window">
-        <field name="name">Customers</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{'default_type': 'private'}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create your first customer!
-            </p>
-        </field>
-    </record>
 
     <record id="view_hotel_customer_search" model="ir.ui.view">
         <field name="name">res.partner.search</field>
@@ -20,7 +9,6 @@
                 <separator />
                 <filter name="Adults" domain="[('is_minor', '=', True)]" />
                 <filter name="Minors" domain="[('is_minor', '=', False)]" />
-                <filter name="TEST" domain="[(True, '=', False)]" />
                 <separator />
                 <filter name="Archived" domain="[('active', '=', False)]" />
             </search>
@@ -35,6 +23,14 @@
             <xpath expr="//tree" position="replace">
                 <tree>
                     <field name="name" />
+                    <field name="street" />
+                    <field name="street2" />
+                    <field name="city" />
+                    <field name="state_id" />
+                    <field name="zip" />
+                    <field name="country_id" />
+                    <field name="phone" />
+                    <field name="email" />
                     <field name="date_of_birth" />
                 </tree>
             </xpath>
@@ -46,7 +42,32 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <!-- Jak to zamknąć w jeden xpath tag?-->
+
+            <xpath expr="//div[@name='button_box']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="after">
+                <div name="button_box_sw" position="inside" class="oe_button_box">
+                    <button class="oe_stat_button" type="object"
+                        name="action_view_customers_reservations"
+                        icon="fa-list">
+                        <field string="Reservations" name="reservations_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" type="object"
+                        name="action_view_customers_rooms"
+                        icon="fa-home">
+                        <field string="Rooms" name="rooms_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" type="object"
+                        name="action_view_customers_transactions"
+                        icon="fa-dollar">
+                        <field string="Transactions" name="transactions_count" widget="statinfo" />
+                    </button>
+                </div>
+            </xpath>
+
+
             <xpath expr="//field[@name='company_type']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -56,20 +77,42 @@
             <xpath expr="//field[@name='function']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <!-- -->
+            <!--?-->
 
             <xpath expr="//notebook" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//group" position="after">
-                    <group>
-                    <field name="date_of_birth"/>
-                    <field name="age"/>
+                <group>
+                    <field name="date_of_birth" />
+                    <field name="age" />
                     <field name="is_minor" />
-                    </group>
-                    <group>
-                    </group>
+                </group>
             </xpath>
         </field>
     </record>
+
+    <record id="action_hotel_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_type': 'private'}</field>
+        <field name="domain">[('date_of_birth', '!=', None)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first customer!
+            </p>
+        </field>
+    </record>
+
+    <record id="ir_cron_scheduled_reage_action" model="ir.cron">
+       <field name="name">Changing Age Depending On Date</field>
+       <field name="model_id" ref="model_res_partner"/>
+       <field name="state">code</field>
+       <field name="code">model.scheduled_change_age()</field>
+       <field name="user_id" ref="base.user_root"/>
+       <field name="interval_number">1</field>
+       <field name="interval_type">days</field>
+       <field name="numbercall">-1</field>
+   </record>
 </odoo>

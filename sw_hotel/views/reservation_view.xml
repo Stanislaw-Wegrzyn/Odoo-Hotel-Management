@@ -5,27 +5,37 @@
         <field name="model">hotel.reservation</field>
         <field name="arch" type="xml">
             <search>
-                <field name="application_datetime" string="Application/Reservation date or host" filter_domain="['|', ('application_datetime', 'ilike', self),('reservation_date_start', 'ilike', self),('reservation_date_end', 'ilike', self),('reservation_host_id', 'ilike', self)]"/>
-                <field name="reservation_date_start"/>
-                <field name="reservation_date_end"/>
-                <field name="reservation_class_id"/>
-                <field name="reservation_host_id"/>
-                <separator/>
-                <filter name="Unpaid" domain="[('payment_status', '=', 'unpaid')]"/>
-                <separator/>
-                <filter name="Adults only" domain="[('children_included', '=', False)]"/>
-                <filter name="Children included" domain="[('children_included', '=', True)]"/>
-                <separator/>
-                <filter name="Archived" domain="[('active', '=', False)]"/>
+                <field name="application_datetime" string="Application/Reservation date or host"
+                    filter_domain="['|', ('application_datetime', 'ilike', self),('reservation_date_start', 'ilike', self),('reservation_date_end', 'ilike', self),('reservation_host_id', 'ilike', self)]" />
+                <field name="reservation_date_start" />
+                <field name="reservation_date_end" />
+                <field name="reservation_class_id" />
+                <field name="reservation_host_id" />
+                <separator />
+                <filter name="Unpaid" domain="[('payment_status', '=', 'unpaid')]" />
+                <separator />
+                <filter name="Adults only" domain="[('children_included', '=', False)]" />
+                <filter name="Children included" domain="[('children_included', '=', True)]" />
+                <separator />
+                <filter name="Archived" domain="[('active', '=', False)]" />
                 <group string="Group By">
-                    <filter string="By status" name="by_status" context="{'group_by':'status'}"/>
-                    <filter string="By payment status" name="by_payment_status" context="{'group_by':'payment_status'}"/>
-                    <separator/>
-                    <filter string="By application date" name="by_application_date" context="{'group_by':'application_datetime'}"/>
-                    <filter string="By reservation start date" name="by_reservation_start_date" context="{'group_by':'reservation_date_start'}"/>
-                    <filter string="By reservation end date" name="by_reservation_end_date" context="{'group_by':'reservation_date_end'}"/>
-                    <separator/>
-                    <filter string="By class" name="by_class" context="{'group_by':'reservation_class_id'}"/>
+                    <filter string="By status" name="by_status" context="{'group_by':'status'}" />
+                    <filter string="By payment status" name="by_payment_status"
+                        context="{'group_by':'payment_status'}" />
+                    <separator />
+                    <filter string="By application date" name="by_application_date"
+                        context="{'group_by':'application_datetime'}" />
+                    <filter string="By reservation start date" name="by_reservation_start_date"
+                        context="{'group_by':'reservation_date_start'}" />
+                    <filter string="By reservation end date" name="by_reservation_end_date"
+                        context="{'group_by':'reservation_date_end'}" />
+                    <separator />
+                    <filter string="By class" name="by_class"
+                        context="{'group_by':'reservation_class_id'}" />
+                </group>
+                <group>
+                    <button string="Open Calendar View" name="action_hotel_reservation_calendar"
+                        type="action" />
                 </group>
             </search>
         </field>
@@ -36,18 +46,18 @@
         <field name="model">hotel.reservation</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="application_datetime"/>
-                <field name="reservation_date_start"/>
-                <field name="reservation_date_end"/>
-                <field name="reservation_class_id" optional="show"/>
+                <field name="application_datetime" />
+                <field name="reservation_date_start" />
+                <field name="reservation_date_end" />
+                <field name="reservation_class_id" optional="show" />
                 <field name="reservation_price" />
-                <field name="persons_number"/>
-                <field name="reservation_host_id"/>
-                <field name="persons_ids" optional="hide"/>
-                <field name="children_number" optional="hide"/>
-                <field name="children_included"/>
-                <field name="rooms_amount"/>
-                <field name="rooms_ids" optional="hide"/>
+                <field name="persons_number" />
+                <field name="reservation_host_id" />
+                <field name="persons_ids" optional="hide" />
+                <field name="children_number" optional="hide" />
+                <field name="children_included" />
+                <field name="rooms_amount" />
+                <field name="rooms_ids" optional="hide" />
                 <field name="payment_status" widget="badge" />
                 <field name="status" widget="badge" />
             </tree>
@@ -60,30 +70,63 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                        <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}" statusbar_visible="draft,ready,in_proces,ended"/>
+                    <button string="Cancel reservation" name="cancel_reservation" type="object"
+                        class="oe_highlight"
+                        confirm="Do you confirm canceling this reservation? All referred transactions will be canceled!" />
+
+                    <button string="Proceed reservation" name="proceed_reservation" type="object"
+                        class="oe_highlight"
+                        confirm="Do you confirm proceeding this reservation?" />
+
+                    <button string="Select rooms automatically"
+                        name="auto_rooms" type="object"/>
+
+                    <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
+                        statusbar_visible="draft,ready,in_proces,ended" />
                 </header>
                 <sheet>
+                    <data>
+                        <div name="button_box" position="inside" class="oe_button_box">
+                            <button class="oe_stat_button" type="object"
+                                name="action_view_reservation_customers"
+                                icon="fa-users">
+                                <field string="Customers" name="customers_count"
+                                    widget="statinfo" />
+                            </button>
+                            <button class="oe_stat_button" type="object"
+                                name="action_view_reservation_rooms"
+                                icon="fa-home">
+                                <field string="Rooms" name="rooms_count" widget="statinfo" />
+                            </button>
+                        </div>
+                    </data>
                     <group>
                         <group>
-                            <field name="application_datetime"/>
-                            <field name="reservation_date_start"/>
-                            <field name="reservation_date_end"/>
+                            <field name="application_datetime" />
+                            <field name="reservation_date_start" widget="daterange"
+                                options="{'related_end_date': 'reservation_date_end'}" />
+                            <field name="reservation_date_end" widget="daterange"
+                                options="{'related_start_date': 'reservation_date_start'}" />
                         </group>
                         <group>
-                            <field name="persons_number"/>
-                            <field name="children_number"/>
-                            <field name="children_included"/>
+                            <field name="persons_number" />
+                            <field name="children_number" />
+                            <field name="children_included" />
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="reservation_class_id"/>
-                            <field name="reservation_price"/>
+                            <field name="reservation_class_id" />
+                            <field name="reservation_price" />
                         </group>
                         <group>
-                            <group><field name="payment_status"/></group>
                             <group>
-                                <button string="Make transaction" name="create_transaction" type="object" class="oe_highlight" confirm="Do you confirm creating new transaction with refer to this reservation?"/>
+                                <field name="payment_status" />
+                            </group>
+                            <group>
+                                <button string="Make transaction" name="create_transaction"
+                                    type="object" class="oe_highlight"
+                                    confirm="Do you confirm creating new transaction with refer to this reservation?" />
                             </group>
                         </group>
                     </group>
@@ -91,54 +134,100 @@
                     <notebook>
                         <page string="Persons">
                             <group>
-                                <field name="reservation_host_id"/>
+                                <field name="reservation_host_id" />
                             </group>
                             <group>
-                                <field name="persons_ids"/>
+                                <field name="persons_ids" />
                             </group>
                         </page>
                         <page string="Rooms">
                             <group>
                                 <group>
-                                    <field name="preferred_rooms_class"/>
+                                    <field name="preferred_rooms_class" />
                                 </group>
                                 <group>
-                                    <field name="rooms_amount"/>
+                                    <field name="rooms_amount" />
                                 </group>
                             </group>
                             <group>
-                                <field name="rooms_ids"/>
-                            </group>
-                            <group>
-                                <group><button string="Select rooms_ids automatically" name="auto_rooms" type="object" class="oe_highlight"/></group>
+                                <field name="rooms_ids" />
                             </group>
                         </page>
                         <page string="Special requirements">
-                            <field name="special_requirements"/>
+                            <field name="special_requirements" />
                         </page>
                         <page string="Transaction">
-                            <field name="assigned_transaction"/>
+                            <field name="transaction_id" />
                         </page>
                     </notebook>
-                    <br/>
-                    <div style="text-align:right;wight:100vw;border-top:1px solid;padding-top:20px">
-                        <button string="Cancel reservation" name="cancel_reservation" type="object" class="oe_highlight" confirm="Do you confirm canceling this reservation? All referred transactions will be canceled!"/>
-                    </div>
 
-                    <field name="active" invisible="1"/>
+                    <field name="active" invisible="1" />
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                        groups="base.group_user" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
             </form>
+        </field>
+    </record>
+
+    <record id="view_hotel_reservation_calendar" model="ir.ui.view">
+        <field name="name">hotel.reservation.calendar</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <calendar string="Reservations Calendar View" date_start="reservation_date_start"
+                date_stop="reservation_date_end" mode='month'>
+                <field name="application_datetime" />
+                <field name="reservation_date_start" />
+                <field name="reservation_date_end" />
+                <field name="reservation_class_id" />
+                <field name="reservation_price" />
+                <field name="persons_number" />
+                <field name="reservation_host_id" />
+                <field name="persons_ids" />
+                <field name="children_included" />
+                <field name="rooms_amount" />
+                <field name="payment_status" />
+                <field name="status" />
+            </calendar>
         </field>
     </record>
 
     <record id="action_hotel_reservation" model="ir.actions.act_window">
         <field name="name">Reservations</field>
         <field name="res_model">hotel.reservation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first reservation!
             </p>
         </field>
     </record>
+
+    <record id="action_view_hotel_reservation_tree" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_hotel_reservation" />
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="tree_hotel_reservation" />
+    </record>
+
+    <record id="action_view_hotel_reservation_calendar" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_hotel_reservation" />
+        <field name="sequence" eval="2" />
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_hotel_reservation_calendar" />
+    </record>
+
+    <record id="ir_cron_scheduled_restatus_action" model="ir.cron">
+       <field name="name">Changing Status Depending On Date</field>
+       <field name="model_id" ref="model_hotel_reservation"/>
+       <field name="state">code</field>
+       <field name="code">model.scheduled_change_status()</field>
+       <field name="user_id" ref="base.user_root"/>
+       <field name="interval_number">1</field>
+       <field name="interval_type">days</field>
+       <field name="numbercall">-1</field>
+   </record>
 </odoo>
