@@ -1,0 +1,854 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sw_hotel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-20 13:07+0000\n"
+"PO-Revision-Date: 2023-06-20 15:16+0200\n"
+"Last-Translator: Stanislaw Wegrzyn <lol@lol.pl>\n"
+"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"Language: pl\n"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_needaction
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_needaction
+msgid "Action Needed"
+msgstr "Wymagane działanie"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__active
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__active
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__active
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__active
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__active
+msgid "Active"
+msgstr "Aktywne"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_ids
+msgid "Activities"
+msgstr "Zajęcia"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_exception_decoration
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekoracja wyjątku aktywności"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_state
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_state
+msgid "Activity State"
+msgstr "stan aktywności"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__actual_transaction_id
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__actual_transaction_id
+msgid "Actual Transaction"
+msgstr "Rzeczywista transakcja"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__age
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__age
+msgid "Age"
+msgstr "Wiek"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__children_number
+msgid "Amount of children"
+msgstr "Ilość dzieci"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__application_datetime
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__application_datetime
+msgid "Application Datetime"
+msgstr "Data i godzina zaaplikowania"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "Application/Reservation date or host"
+msgstr "Zgłoszenie/data rezerwacji lub gospodarz"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_attachment_count
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_attachment_count
+msgid "Attachment Count"
+msgstr "Liczba załączników"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_room__status__available
+msgid "Available"
+msgstr "Dostępne"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "By application date"
+msgstr "Według daty złożenia wniosku"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_transaction
+msgid "By application datetime"
+msgstr "Według daty i godziny aplikacji"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+msgid "By capacity"
+msgstr "Według pojemności"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+msgid "By children capacity"
+msgstr "Według pojemności dzieci"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+msgid "By class"
+msgstr "Według klasy"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room_class
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room_type
+msgid "By extra price percent"
+msgstr "Według dodatkowego procentu ceny"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "By payment status"
+msgstr "Według statusu płatności"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_transaction
+msgid "By proceeded datetime"
+msgstr "Według daty i godziny kontynułacji"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "By reservation end date"
+msgstr "Według daty zakończenia rezerwacji"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "By reservation start date"
+msgstr "Według daty rozpoczęcia rezerwacji"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_transaction
+msgid "By status"
+msgstr "Według statusu"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+msgid "By type"
+msgstr "Według typu"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__calendar_date_start
+msgid "Calendar Date Start"
+msgstr "Data z kalendarza Początek"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Cancel reservation"
+msgstr "Anuluj rezerwację"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__payment_status__canceled
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__status__canceled
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_transaction__status__canceled
+msgid "Canceled"
+msgstr "Anulowano"
+
+#. module: sw_hotel
+#: model:ir.actions.server,name:sw_hotel.ir_cron_scheduled_reage_action_ir_actions_server
+#: model:ir.cron,cron_name:sw_hotel.ir_cron_scheduled_reage_action
+#: model:ir.cron,name:sw_hotel.ir_cron_scheduled_reage_action
+msgid "Changing Age Depending On Date"
+msgstr "Zmiana wieku w zależności od daty"
+
+#. module: sw_hotel
+#: model:ir.actions.server,name:sw_hotel.ir_cron_scheduled_restatus_action_ir_actions_server
+#: model:ir.cron,cron_name:sw_hotel.ir_cron_scheduled_restatus_action
+#: model:ir.cron,name:sw_hotel.ir_cron_scheduled_restatus_action
+msgid "Changing Status Depending On Date"
+msgstr "Zmiana stanu w zależności od daty"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__children_included
+msgid "Children Included"
+msgstr "Dzieci w zestawie"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__children_capacity
+msgid "Children capacity"
+msgstr "Pojemność dzieci"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__for_children
+msgid "Children included"
+msgstr "Obejmuje dzieci"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_create_transaction
+msgid "Create Refer Transaction"
+msgstr "Utwórz transakcję polecenia"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_customer
+msgid "Create your first customer!"
+msgstr "Stwórz swojego pierwszego klienta!"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_reservation
+msgid "Create your first reservation!"
+msgstr "Utwórz swoją pierwszą rezerwację!"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_room_class
+msgid "Create your first room class!"
+msgstr "Utwórz swoją pierwszą klasę pokoju!"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_room_type
+msgid "Create your first room type!"
+msgstr "Utwórz swój pierwszy typ pokoju!"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_room
+msgid "Create your first room!"
+msgstr "Stwórz swój pierwszy pokój!"
+
+#. module: sw_hotel
+#: model_terms:ir.actions.act_window,help:sw_hotel.action_hotel_transaction
+msgid "Create your first transaction!"
+msgstr "Utwórz swoją pierwszą transakcję!"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__create_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__create_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__create_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__create_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__create_uid
+msgid "Created by"
+msgstr "Utworzony przez"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__create_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__create_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__create_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__create_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__create_date
+msgid "Created on"
+msgstr "Utworzono w dniu"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__customers_capacity
+msgid "Customer capacity"
+msgstr "Pojemność klienta"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_customer
+#: model:ir.ui.menu,name:sw_hotel.menu_customer_master
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Customers"
+msgstr "Klienci"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__customers_count
+msgid "Customers Count"
+msgstr "liczba klientów"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_customer
+msgid "Customers Details"
+msgstr "Szczegóły klientów"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__persons_ids
+msgid "Customers in reservation"
+msgstr "Klienci w rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__date_of_birth
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__date_of_birth
+msgid "Date Of Birth"
+msgstr "Data urodzenia"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__display_name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__display_name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__display_name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__display_name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__display_name
+msgid "Display Name"
+msgstr "Wyświetl nazwę"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid ""
+"Do you confirm canceling this reservation? All referred transactions will be "
+"canceled!"
+msgstr ""
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Do you confirm creating new transaction with refer to this reservation?"
+msgstr "Czy potwierdzasz utworzenie nowej transakcji w odniesieniu do tej rezerwacji?"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Do you confirm proceeding this reservation?"
+msgstr "Czy potwierdzasz kontynuację tej rezerwacji?"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__payment_status__draft
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__status__draft
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_transaction__status__draft
+msgid "Draft"
+msgstr "Szkic"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__status__ended
+msgid "Ended"
+msgstr "Zakończone"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__extra_price_percent
+msgid "Extra price percent"
+msgstr "Dodatkowy procent ceny"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__floor
+msgid "Floor number"
+msgstr "Numer piętra"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_follower_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_follower_ids
+msgid "Followers"
+msgstr "Obserwatorzy"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_channel_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Obserwatorzy (kanały)"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_partner_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Obserwatorzy (Partnerzy)"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room_class
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_room_type
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_transaction
+msgid "Group By"
+msgstr "Grupuj według"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_hotel_root
+msgid "Hotel"
+msgstr ""
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__identifier
+msgid "ID"
+msgstr ""
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_exception_icon
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_exception_icon
+msgid "Icon"
+msgstr "Ikona"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__activity_exception_icon
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikona wskazująca działanie wyjątku."
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_transaction
+msgid "Identifier/Datetime"
+msgstr "Identyfikator/Data/Godzina"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_needaction
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_unread
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_needaction
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Jeśli zaznaczone, nowe wiadomości wymagają Twojej uwagi."
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_has_error
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jeśli zaznaczono, niektóre wiadomości zawierają błąd dostarczenia."
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_room__status__in_preparation
+msgid "In preparation"
+msgstr "W przygotowaniu"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__payment_status__in_proces
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__status__in_proces
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_transaction__status__in_proces
+msgid "In proces"
+msgstr "W trakcie"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_is_follower
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_is_follower
+msgid "Is Follower"
+msgstr "Jest naśladowcą"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__is_minor
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__is_minor
+msgid "Is Minor"
+msgstr "Jest nieletni"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation____last_update
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room____last_update
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class____last_update
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type____last_update
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction____last_update
+msgid "Last Modified on"
+msgstr "Ostatnia modyfikacja w dniu"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__write_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__write_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__write_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__write_uid
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__write_uid
+msgid "Last Updated by"
+msgstr "Ostatnia aktualizacja przez"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__write_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__write_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__write_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__write_date
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__write_date
+msgid "Last Updated on"
+msgstr "Ostatnia aktualizacja w dniu"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_main_attachment_id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Główny dodatek"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Make transaction"
+msgstr "Dokonaj transakcji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_has_error
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_has_error
+msgid "Message Delivery error"
+msgstr "Błąd dostarczenia wiadomości"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_ids
+msgid "Messages"
+msgstr "Wiadomości"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_type__name
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__name
+msgid "Name"
+msgstr "Imię"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_room__status__need_preparation
+msgid "Need preparation"
+msgstr "Potrzebne przygotowanie"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_date_deadline
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Termin następnej czynności"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_summary
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_summary
+msgid "Next Activity Summary"
+msgstr "Podsumowanie następnej czynności"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_type_id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_type_id
+msgid "Next Activity Type"
+msgstr "Następny typ aktywności"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__payment_status__no_transaction
+msgid "No transaction"
+msgstr "Brak transakcji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_needaction_counter
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Liczba akcji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_has_error_counter
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_has_error_counter
+msgid "Number of errors"
+msgstr "Liczba błędów"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_needaction_counter
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Liczba komunikatów wymagających działania"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_has_error_counter
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Liczba wiadomości z błędem dostarczenia"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__message_unread_counter
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Liczba nieprzeczytanych wiadomości"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_room__status__occupied
+msgid "Occupied"
+msgstr "Zajęty"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.search_hotel_reservation
+msgid "Open Calendar View"
+msgstr "Otwórz widok kalendarza"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__payment_status__paid
+msgid "Paid"
+msgstr "Zapłacono"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__payment_status
+msgid "Payment status"
+msgstr "Status płatności"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Persons"
+msgstr "Osoby"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__persons_number
+msgid "Persons Number"
+msgstr "Liczba osób"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__preferred_rooms_class
+msgid "Preferred Rooms Class"
+msgstr "Preferowana klasa pokoi"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__reservation_price
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__price
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room_class__price
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__price
+msgid "Price"
+msgstr "Cena"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_transaction__status__paid
+msgid "Proceed"
+msgstr "Kontynuuj"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Proceed reservation"
+msgstr "Kontynuuj rezerwację"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__proceeded_datetime
+msgid "Proceeded on"
+msgstr "Kontynuuj"
+
+#. module: sw_hotel
+#: model:ir.model.fields.selection,name:sw_hotel.selection__hotel_reservation__status__ready
+msgid "Ready"
+msgstr "Gotowy"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__referred_transaction
+msgid "Referred Transaction"
+msgstr "Polecona transakcja"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__reservation_id
+msgid "Reservation"
+msgstr "Rezerwacja"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__reservation_date_end
+msgid "Reservation Date End"
+msgstr "Koniec daty rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__reservation_date_start
+msgid "Reservation Date Start"
+msgstr "Początek daty rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__reservation_host_id
+msgid "Reservation Host"
+msgstr "Gospodarz rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__reservation_class_id
+msgid "Reservation's class"
+msgstr "Klasa rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_reservation
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__reservations_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__reservations_ids
+#: model:ir.ui.menu,name:sw_hotel.menu_reservation_master
+#: model_terms:ir.ui.view,arch_db:sw_hotel.view_partner_form_inherit
+msgid "Reservations"
+msgstr "Rezerwacje"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.view_hotel_reservation_calendar
+msgid "Reservations Calendar View"
+msgstr "Widok kalendarza rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__reservations_count
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__reservations_count
+msgid "Reservations Count"
+msgstr "Liczba rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_reservation
+msgid "Reservations Details"
+msgstr "Szczegóły rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__activity_user_id
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__activity_user_id
+msgid "Responsible User"
+msgstr "Odpowiedzialny użytkownik"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__number
+msgid "Room number"
+msgstr "Numer pokoju"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__room_class_id
+msgid "Room's class"
+msgstr "klasa pokoju"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_room
+#: model:ir.ui.menu,name:sw_hotel.menu_room_master
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+#: model_terms:ir.ui.view,arch_db:sw_hotel.view_partner_form_inherit
+msgid "Rooms"
+msgstr "Pokoje"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__rooms_amount
+msgid "Rooms Amount"
+msgstr "Liczba pokoi"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_room_class
+msgid "Rooms Classes"
+msgstr "Klasy pokoi"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__rooms_count
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__rooms_count
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__rooms_count
+msgid "Rooms Count"
+msgstr "Liczba pokoi"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_room
+msgid "Rooms Details"
+msgstr "Szczegóły pokoi"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__rooms_his_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__rooms_his_ids
+msgid "Rooms His"
+msgstr "Pokoje Jego"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_room_type
+msgid "Rooms Types"
+msgstr "Rodzaje pokoi"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_room_class
+msgid "Rooms classes"
+msgstr "Klasy pokoi"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__rooms_ids
+msgid "Rooms in reservation"
+msgstr "Pokoje w rezerwacji"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_room_type
+msgid "Rooms types"
+msgstr "Rodzaje pokoi"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Select rooms automatically"
+msgstr "Wybierz pokoje automatycznie"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__special_requirements
+msgid "Special Requirements"
+msgstr "Specjalne wymagania"
+
+#. module: sw_hotel
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Special requirements"
+msgstr "Specjalne wymagania"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__status
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__status
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__status
+msgid "Status"
+msgstr "Stan"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__activity_state
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_tags_master
+msgid "Tags"
+msgstr "Tagi"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__transaction_id
+#: model_terms:ir.ui.view,arch_db:sw_hotel.form_hotel_reservation
+msgid "Transaction"
+msgstr "Transakcja"
+
+#. module: sw_hotel
+#: model:ir.actions.act_window,name:sw_hotel.action_hotel_transaction
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__transactions_ids
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__transactions_ids
+#: model:ir.ui.menu,name:sw_hotel.menu_transaction_master
+#: model_terms:ir.ui.view,arch_db:sw_hotel.view_partner_form_inherit
+msgid "Transactions"
+msgstr "Transakcje"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_res_partner__transactions_count
+#: model:ir.model.fields,field_description:sw_hotel.field_res_users__transactions_count
+msgid "Transactions Count"
+msgstr "Liczba transakcji"
+
+#. module: sw_hotel
+#: model:ir.ui.menu,name:sw_hotel.menu_transaction
+msgid "Transactions Details"
+msgstr "Szczegóły transakcji"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_room__room_type_id
+msgid "Type of room"
+msgstr "Rodzaj pokoju"
+
+#. module: sw_hotel
+#: model:ir.model.fields,help:sw_hotel.field_hotel_reservation__activity_exception_decoration
+#: model:ir.model.fields,help:sw_hotel.field_hotel_transaction__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Typ zarejestrowanej aktywności wyjątku."
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_unread
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_unread
+msgid "Unread Messages"
+msgstr "Nieprzeczytane wiadomości"
+
+#. module: sw_hotel
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_reservation__message_unread_counter
+#: model:ir.model.fields,field_description:sw_hotel.field_hotel_transaction__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Licznik nieprzeczytanych wiadomości"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_hotel_reservation
+msgid "hotel reservation"
+msgstr "rezerwacja hotelu"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_hotel_room_class
+msgid "hotel room class"
+msgstr "klasa pokoju hotelowego"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_hotel_room_type
+msgid "hotel room type"
+msgstr "rodzaj pokoju hotelowego"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_hotel_room
+msgid "hotel room/apartment"
+msgstr "hotelowy pokój/apartament"
+
+#. module: sw_hotel
+#: model:ir.model,name:sw_hotel.model_hotel_transaction
+msgid "hotel transaction/payment"
+msgstr "hotelowa transakcja/płatność"
+

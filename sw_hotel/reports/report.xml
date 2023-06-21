@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+        id="report_reservation_card"
+        string="Reservation Card"
+        model="hotel.reservation"
+        report_type="qweb-pdf"  
+        name="sw_hotel.reservation_card"
+        file="sw_hotel.reservation_card"
+    />
+</odoo>
