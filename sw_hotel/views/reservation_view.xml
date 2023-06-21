@@ -81,8 +81,6 @@
                     <button string="Select rooms automatically"
                         name="auto_rooms" type="object" />
 
-                    <button string="Print" name="print_button_action" type="Object" />
-
                     <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
                         statusbar_visible="draft,ready,in_proces,ended" />
                 </header>
@@ -194,6 +192,22 @@
                 <field name="payment_status" />
                 <field name="status" />
             </calendar>
+        </field>
+    </record>
+
+    <record id="view_wizard_form_cancel_reason" model="ir.ui.view">
+        <field name="name">cancel_reason.wizard.form</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Cancelation Reason">
+                <group>
+                    <field name="cancel_reason" />
+                </group>
+                <footer>
+                    <button string="Confirm" class="btn-secondary" special="confirm" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
         </field>
     </record>
 

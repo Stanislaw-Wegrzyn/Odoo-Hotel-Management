@@ -2,10 +2,169 @@
 <odoo>
     <template id="reservation_card">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
+            <t t-foreach="docs" t-as="record">
+                <div class="header">
+                    <h1 style="text-align:center">Reservation Card</h1>
+                    <br />
+                    <h2> Host: <span style="font-size: 0.8em;">
+                            <t t-esc="record.reservation_host_id.name" />
+                        </span>
+                    </h2>
+                    <h2>Date: <span style="font-size: 0.8em;">
+                            <t t-esc="record.reservation_date_start" /> --- <t
+                                t-esc="record.reservation_date_end" />
+                        </span>
+                    </h2>
+                </div>
                 <div class="page">
-                    <h1>Reservation Card</h1>
-                    <p>Reservation ID: <t t-esc="doc.name"/></p>
+                    <br />
+                    <hr />
+                    <h2>Customers:</h2>
+                    <table style="text-align:center;width:100%">
+                        <tr>
+                            <th style="outline: 1px solid;">Name</th>
+                            <th style="outline: 1px solid;">Country</th>
+                            <th style="outline: 1px solid;">State</th>
+                            <th style="outline: 1px solid;">City</th>
+                            <th style="outline: 1px solid;">Adress</th>
+                            <th style="outline: 1px solid;">Date of birth</th>
+                            <th style="outline: 1px solid;">Phone</th>
+                            <th style="outline: 1px solid;">Email</th>
+                        </tr>
+                        <t t-foreach="docs.persons_ids" t-as="person">
+                            <tr>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.name" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.country_id.name" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.state_id.name" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.city" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.street" />
+                                        <t t-esc="person.zip" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.date_of_birth" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.phone" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="person.email" />
+                                    </p>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <br />
+                    <hr />
+                    <h2>Rooms:</h2>
+                    <table style="text-align:center;width:100%">
+                        <tr>
+                            <th style="outline: 1px solid;">Number</th>
+                            <th style="outline: 1px solid;">Floor</th>
+                            <th style="outline: 1px solid;">Room class</th>
+                            <th style="outline: 1px solid;">Room type</th>
+                            <th style="outline: 1px solid;">Price</th>
+                        </tr>
+                        <t t-foreach="docs.rooms_ids" t-as="room">
+                            <tr>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="room.number" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="room.floor" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="room.room_class_id.name" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="room.room_type_id.name" />
+                                    </p>
+                                </td>
+                                <td style="outline: 1px solid;padding: 5px">
+                                    <p>
+                                        <t t-esc="room.price" />
+                                    </p>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <br />
+                    <hr />
+                    <h2>Transaction:</h2>
+                    <h3>Total price: <span><t t-esc="record.reservation_price" /></span></h3>
+                    <h3>Transaction status: <span>
+                            <u>
+                                <t t-esc="record.payment_status" />
+                            </u>
+                        </span></h3>
+                    <t t-if="record.payment_status != no_transaction">
+                        <table style="text-align:center;width:100%">
+                            <tr>
+                                <th style="outline: 1px solid;">ID</th>
+                                <th style="outline: 1px solid;">Application datetime</th>
+                                <th style="outline: 1px solid;">Proceeded on</th>
+                                <th style="outline: 1px solid;">Reservation</th>
+                                <th style="outline: 1px solid;">Price</th>
+                                <th style="outline: 1px solid;">Status</th>
+                            </tr>
+                            <t t-foreach="docs.transaction_id" t-as="transaction">
+                                <tr>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <t t-esc="transaction.identifier" />
+                                    </td>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <t t-esc="transaction.application_datetime" />
+                                    </td>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <t t-esc="transaction.proceeded_datetime" />
+                                    </td>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <t t-esc="transaction.reservation_id.name" />
+                                    </td>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <t t-esc="transaction.price" />
+                                    </td>
+                                    <td style="outline: 1px solid;padding: 5px;">
+                                        <b>
+                                            <t t-esc="transaction.status" />
+                                        </b>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                        <br/>
+                        <hr/>
+                    </t>
                 </div>
             </t>
         </t>

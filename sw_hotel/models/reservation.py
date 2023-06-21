@@ -32,7 +32,7 @@ class HotelReservation(models.Model):
 
     preferred_rooms_class = fields.Many2one(comodel_name='hotel.room_class', required=False)
 
-    transaction_id = fields.Many2many(comodel_name="hotel.transaction", limit=1, readonly=True, store=True)
+    transaction_id = fields.Many2many(comodel_name="hotel.transaction", readonly=True, store=True)
     referred_transaction = fields.Many2one(comodel_name="hotel.transaction", compute="_compute_referred_transaction", sore=True, tracking=True)
     payment_status = fields.Selection(
         [('no_transaction', 'No transaction'), ('draft', 'Draft'), ('in_proces', 'In proces'), ('paid', 'Paid'), ('canceled', 'Canceled')],
@@ -247,5 +247,4 @@ class HotelReservation(models.Model):
             
 
     def scheduled_change_status(self):
-        self._compute_status()
-    
+        self._compute_status()    
