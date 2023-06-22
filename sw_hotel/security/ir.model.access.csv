@@ -4,3 +4,4 @@ access.hotel.reservation,access_hotel_reservation,sw_hotel.model_hotel_reservati
 access.hotel.transaction,access_hotel_transaction,sw_hotel.model_hotel_transaction,base.group_user,1,1,1,1
 access.hotel.room_class,access_hotel_room_class,sw_hotel.model_hotel_room_class,base.group_user,1,1,1,1
 access.hotel.room_type,access_hotel_room_type,sw_hotel.model_hotel_room_type,base.group_user,1,1,1,1
+access.hotel.cancel_reservation.wizard,access_hotel_cancel_reservation_wizard,sw_hotel.model_hotel_cancel_reservation_wizard,base.group_user,1,1,1,1

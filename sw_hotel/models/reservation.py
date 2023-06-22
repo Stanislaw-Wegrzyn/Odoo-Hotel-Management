@@ -248,3 +248,6 @@ class HotelReservation(models.Model):
 
     def scheduled_change_status(self):
         self._compute_status()    
+
+    def cancel_reservation_with_wizard(self):
+        return {}

@@ -20,6 +20,7 @@
         action="action_hotel_reservation"
         sequence="0"
     />
+
     <!-- Rooms -->
     <menuitem
         id="menu_room_master"
