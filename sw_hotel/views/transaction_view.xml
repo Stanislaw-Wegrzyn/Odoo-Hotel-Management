@@ -5,19 +5,22 @@
         <field name="model">hotel.transaction</field>
         <field name="arch" type="xml">
             <search>
-                <field name="identifier" string="Identifier/Datetime" filter_domain="['|', ('identifier', 'ilike', self),('application_datetime', 'ilike', self)]"/>
-                <field name="application_datetime"/>
-                <field name="proceeded_datetime"/>
-                <field name="status"/>
-                <separator/>
-                <filter name="In proces" domain="[('status', '=', 'in_proces')]"/>
-                <separator/>
-                <filter name="Archived" domain="[('active', '=', False)]"/>
+                <field name="identifier" string="Identifier/Datetime"
+                    filter_domain="['|', ('identifier', 'ilike', self),('application_datetime', 'ilike', self)]" />
+                <field name="application_datetime" />
+                <field name="proceeded_datetime" />
+                <field name="status" />
+                <separator />
+                <filter name="In proces" domain="[('status', '=', 'in_proces')]" />
+                <separator />
+                <filter name="Archived" domain="[('active', '=', False)]" />
                 <group string="Group By">
-                    <filter string="By status" name="by_status" context="{'group_by':'status'}"/>
-                    <separator/>
-                    <filter string="By application datetime" name="by_application_datetime" context="{'group_by':'application_datetime'}"/>
-                    <filter string="By proceeded datetime" name="by_proceeded_datetime" context="{'group_by':'proceeded_datetime'}"/>
+                    <filter string="By status" name="by_status" context="{'group_by':'status'}" />
+                    <separator />
+                    <filter string="By application datetime" name="by_application_datetime"
+                        context="{'group_by':'application_datetime'}" />
+                    <filter string="By proceeded datetime" name="by_proceeded_datetime"
+                        context="{'group_by':'proceeded_datetime'}" />
                 </group>
             </search>
         </field>
@@ -28,12 +31,12 @@
         <field name="model">hotel.transaction</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="identifier"/>
-                <field name="application_datetime"/>
-                <field name="proceeded_datetime"/>
-                <field name="reservation_id"/>
-                <field name="price"/>
-                <field name="status"/>
+                <field name="identifier" />
+                <field name="application_datetime" />
+                <field name="proceeded_datetime" />
+                <field name="reservation_id" />
+                <field name="price" />
+                <field name="status" />
             </tree>
         </field>
     </record>
@@ -44,17 +47,18 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                        <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}" statusbar_visible="draft,in_proces,paid"/>
+                    <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
+                        statusbar_visible="draft,in_proces,paid" />
                 </header>
                 <sheet>
                     <group>
-                        <field name="identifier"/>
-                        <field name="application_datetime"/>
-                        <field name="reservation_id" optional="hide"/>
-                        <field name="price"/>
-                        <field name="proceeded_datetime"/>
+                        <field name="identifier" />
+                        <field name="application_datetime" />
+                        <field name="reservation_id" optional="hide" />
+                        <field name="price" />
+                        <field name="proceeded_datetime" />
                     </group>
-                    <field name="active" invisible="1"/>
+                    <field name="active" invisible="1" />
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"
@@ -85,4 +89,5 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
+
 </odoo>

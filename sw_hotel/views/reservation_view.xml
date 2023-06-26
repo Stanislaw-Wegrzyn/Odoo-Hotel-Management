@@ -55,7 +55,7 @@
                 <field name="reservation_host_id" />
                 <field name="persons_ids" optional="hide" />
                 <field name="children_number" optional="hide" />
-                <field name="children_included" widget="custom_boolean_widget"/>
+                <field name="children_included" widget="custom_boolean_widget" />
                 <field name="rooms_amount" />
                 <field name="rooms_ids" optional="hide" />
                 <field name="payment_status" widget="badge" />
@@ -71,7 +71,7 @@
             <form>
                 <header>
                     <button string="Cancel Reservation" name="cancel_reservation_with_wizard"
-                        type="object" class="oe_highlight" 
+                        type="object" class="oe_highlight"
                         confirm="Do you confirm canceling this reservation? All referred transactions will be canceled!" />
 
                     <button string="Proceed reservation" name="proceed_reservation" type="object"
@@ -79,7 +79,7 @@
                         confirm="Do you confirm proceeding this reservation?" />
 
                     <button string="Select rooms automatically" name="auto_rooms" type="object" />
-                    
+
                     <button string="Test Send Email" name="test_send_email" type="object" />
 
                     <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
@@ -194,6 +194,22 @@
         </field>
     </record>
 
+    <record id="view_hotel_reservation_activity" model="ir.ui.view">
+        <field name="name">hotel.reservation.activity</field>
+        <field name="model">hotel.reservation</field>
+        <field name="arch" type="xml">
+            <activity string="Activities">
+                <templates>
+                    <div t-name="activity-box">
+                        <div>
+                            <field name="name" />
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
     <record id="action_hotel_reservation" model="ir.actions.act_window">
         <field name="name">Reservations</field>
         <field name="res_model">hotel.reservation</field>
@@ -217,6 +233,13 @@
         <field name="sequence" eval="2" />
         <field name="view_mode">calendar</field>
         <field name="view_id" ref="view_hotel_reservation_calendar" />
+    </record>
+
+    <record id="action_view_hotel_reservation_activity" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="action_hotel_reservation" />
+        <field name="sequence" eval="3" />
+        <field name="view_mode">activity</field>
+        <field name="view_id" ref="view_hotel_reservation_activity" />
     </record>
 
     <record id="ir_cron_scheduled_restatus_action" model="ir.cron">
