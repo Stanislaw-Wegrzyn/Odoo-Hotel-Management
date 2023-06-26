@@ -53,6 +53,19 @@ class HotelReservation(models.Model):
 
     active = fields.Boolean(default=True)
 
+    def test_send_email(self):
+        e = self.message_post(
+            body="Hello, this is a test email!",
+            subject="Test Email",
+            email_from="sender@example.com",
+            email_to="catchall.sw.odoo@gmail.com"
+        )
+        print("[?]", e)
+        return
+
+    def add_log_note(self, note):
+        self.message_post(body=note, message_type='comment')
+
     def _compute_name(self):
         for rec in self:
             if rec.reservation_date_start and rec.reservation_date_end and rec.reservation_host_id:
@@ -250,4 +263,19 @@ class HotelReservation(models.Model):
         self._compute_status()    
 
     def cancel_reservation_with_wizard(self):
-        return {}
+        return {
+            "name": "Cancelation reason",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "hotel.cancel_reservation.wizard",
+            "views": [
+                (
+                    self.env.ref("sw_hotel.form_hotel_cancel_reservation_wizard").id,
+                    "form",
+                )
+            ],
+            "view_id": self.env.ref(
+                "sw_hotel.form_hotel_cancel_reservation_wizard"
+            ).id,
+            "target": "new",
+        }

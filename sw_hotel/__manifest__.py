@@ -7,6 +7,7 @@
     'depends': ['mail', 'base'],
     'data': [
         'security/ir.model.access.csv',
+        "./views/assets.xml",
         './wizard/cancel_reservation_view.xml',
         './views/room_class_view.xml',
         './views/room_type_view.xml',

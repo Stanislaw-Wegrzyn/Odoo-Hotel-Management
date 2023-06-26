@@ -5,9 +5,7 @@
         <field name="model">hotel.cancel_reservation.wizard</field>
         <field name="arch" type="xml">
             <form>
-            <group>
-                <field name="reason" />
-            </group>
+            <field name="reason" />
             <footer>
                 <button name="confirm_reservation_cancel" string="Confirm Cancel" type="object" class="btn-primary" />
                 <button special="cancel" string="Discard" class="btn-secondary" />

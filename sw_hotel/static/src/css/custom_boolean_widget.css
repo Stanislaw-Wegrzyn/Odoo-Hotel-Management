@@ -1,0 +1,9 @@
+.boolean-true {
+    color: green;
+    font-weight: bold;
+}
+
+.boolean-false {
+    color: red;
+    text-decoration: line-through;
+}

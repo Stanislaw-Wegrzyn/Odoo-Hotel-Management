@@ -55,7 +55,7 @@
                 <field name="reservation_host_id" />
                 <field name="persons_ids" optional="hide" />
                 <field name="children_number" optional="hide" />
-                <field name="children_included" />
+                <field name="children_included" widget="custom_boolean_widget"/>
                 <field name="rooms_amount" />
                 <field name="rooms_ids" optional="hide" />
                 <field name="payment_status" widget="badge" />
@@ -70,8 +70,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button string="Cancel reservation" name="cancel_reservation" type="object"
-                        class="oe_highlight"
+                    <button string="Cancel Reservation" name="cancel_reservation_with_wizard"
+                        type="object" class="oe_highlight" 
                         confirm="Do you confirm canceling this reservation? All referred transactions will be canceled!" />
 
                     <button string="Proceed reservation" name="proceed_reservation" type="object"
@@ -79,8 +79,8 @@
                         confirm="Do you confirm proceeding this reservation?" />
 
                     <button string="Select rooms automatically" name="auto_rooms" type="object" />
-
-                    <button string="Cancel TEST" name="cancel_reservation_with_wizard" type="object" />
+                    
+                    <button string="Test Send Email" name="test_send_email" type="object" />
 
                     <field name="status" widget="statusbar" nolabel="1" options="{'clickable': '1'}"
                         statusbar_visible="draft,ready,in_proces,ended" />
@@ -112,7 +112,7 @@
                         <group>
                             <field name="persons_number" />
                             <field name="children_number" />
-                            <field name="children_included" />
+                            <field name="children_included" widget="custom_boolean_widget" />
                         </group>
                     </group>
                     <group>
@@ -137,9 +137,7 @@
                             <group>
                                 <field name="reservation_host_id" />
                             </group>
-                            <group>
-                                <field name="persons_ids" />
-                            </group>
+                            <field name="persons_ids" />
                         </page>
                         <page string="Rooms">
                             <group>

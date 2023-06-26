@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <template id="assets_backend" name="sw_hotel assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/sw_hotel/static/src/js/custom_boolean_widget.js"></script>
+                <link rel="stylesheet" type="text/css" href="/sw_hotel/static/src/css/custom_boolean_widget.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
